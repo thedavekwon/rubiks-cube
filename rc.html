@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+attribute vec4 vColor;
+varying vec4 fColor;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+void main() {
+
+    gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+    //gl_Position = vPosition;
+    fColor = vColor;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+varying vec4 fColor;
+
+//fColor ambient
+void main() {
+    gl_FragColor = fColor;
+}
+</script>
+
+<head>
+    <title> Rubik's Cube </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="rc.css">
+    <script type="text/javascript" src="webgl-utils.js"></script>
+    <script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MV.js"></script>
+    <script type="text/javascript" src="Colors.js"></script>
+    <script type="text/javascript" src="rc.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="logo">
+        <a>Rubik's Cube WebGL</a>
+    </div>
+</div>
+<div class="wrapper-ver">
+    <div class="wrapper">
+        <div class="parent">
+            <canvas id="gl-canvas" width="600" height="600" oncontextmenu="return false;">
+                Oops ... your browser doesn't support the HTML5 canvas element
+            </canvas>
+        </div>
+        <div class="copy">
+            <h1>
+                Click with Right to Rotate
+                <br/>
+                Click with Left to turn
+            </h1>
+            <p class="tagline">
+                <input type="text" id="saveText" value="" size="30">
+                <br/>
+                <br/>
+                <button id="saveButton">Save</button>
+                <button id="loadButton">Load</button>
+                <button id="reset">Reset</button>
+                <br/>
+                <br/>
+                <input type="text" id="shuffleNum" value="10" size="5">
+                <button id="shuffle">Shuffle</button>
+            </p>
+            <button id= "LButton" style="margin-bottom:5px;">L</button>
+            <button id= "RButton" style="">R</button>
+            <button id= "UButton" style="">U</button>
+            <button id= "DButton" style="">D</button>
+            <button id= "FButton" style="">F</button>
+            <button id= "BButton" style="">B</button>
+            <button id= "MButton" style="">M</button>
+            <button id= "EButton" style="">E</button>
+            <button id= "SButton" style="">S</button>
+            <br/>
+            <button id= "LrButton" style="">Lr</button>
+            <button id= "RrButton" style="">Rr</button>
+            <button id= "UrButton" style="">Ur</button>
+            <button id= "DrButton" style="">Dr</button>
+            <button id= "FrButton" style="">Fr</button>
+            <button id= "BrButton" style="">Br</button>
+            <button id= "MrButton" style="">Mr</button>
+            <button id= "ErButton" style="">Er</button>
+            <button id= "SrButton" style="">Sr</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
